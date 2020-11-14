@@ -284,7 +284,7 @@
                     </form>
                 </div>
 
-                <div class="col-xs-5" style="">
+                <div class="col-xs-5">
                     <h3 style="margin-top:0;color:#fff;">Our Address</h3>
                     <address style="color:#fff;">
                         <strong>X Entertainment</strong><br>
