@@ -15,6 +15,10 @@ Please follow following steps to setup this project in your machine
 - Check your database settings are correct in '.env' file (DB_PORT,DB_DATABASE,DB_USERNAME,DB_PASSWORD)
 - After that type "php artisan key:generate" and press enter
 - Create a databse schema named "xentertainment"
-- Finally type "php artisan migrate" and press enter
+- After that type "php artisan migrate" and press enter
+- Finally type "php artisan serve" and press enter
+- Click on the generated link to view project
+
+Cheers!!!!
 
 
