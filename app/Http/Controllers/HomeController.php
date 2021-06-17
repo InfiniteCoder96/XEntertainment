@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +23,22 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $role = Auth::user()->role;
+        switch ($role) {
+            case 'admin':
+                return view('admin.dashboard');
+                break;
+            case 'manager':
+                return view('home');
+                break;
+            default:
+                return view('welcome');
+                break;
+        }
+        
+    }
+
+    public function show_dashboard() {
+        
     }
 }
