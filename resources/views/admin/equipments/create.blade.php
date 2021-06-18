@@ -34,20 +34,20 @@
               
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="{{ $equipment ?  route('equipments.update', $equipment->id) : route('equipments.store')}}" method="{{$equipment ? 'PUT' : 'POST'}}">
+              <form action="{{route('equipments.store')}}" method="POST">
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Equipment Name</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" name="eq_name" placeholder="Enter Equipment Name" value={{ $equipment ? $equipment->eq_name : ''}}>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="eq_name" placeholder="Enter Equipment Name">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Equipment Price</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" name="eq_price" placeholder="Enter Equipment Price" value={{ $equipment ? $equipment->eq_price : ''}}>
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="eq_price" placeholder="Enter Equipment Price">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Equipment Type</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" name="eq_type" placeholder="Enter Equipment Type" value={{ $equipment ? $equipment->eq_type : ''}}>
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="eq_type" placeholder="Enter Equipment Type">
                   </div>
                 </div>
                 <!-- /.card-body -->
