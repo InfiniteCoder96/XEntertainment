@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Equipment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class EquipmentController extends Controller
 {
@@ -33,15 +34,17 @@ class EquipmentController extends Controller
     {
         $this->validate($request, [
             'eq_name' => 'required',
-            'eq_price' => 'required',
+            'eq_price' => 'required|digits_between:1,7',
             'eq_type' => 'required',
         ]);
     
         $input = $request->all();
     
         $user = Equipment::create($input);
-    
-        return $this->index($request);
+
+        $data = Equipment::orderBy('id','DESC')->get();
+        Session::flash('flash_message', 'Equipment successfully added!');
+        return view('admin.equipments.index',compact('data'));
     }
 
     /**
@@ -54,7 +57,7 @@ class EquipmentController extends Controller
     {
         $equipment = Equipment::find($id);
     
-        return view('admin.equipments.create',compact('equipment'));
+        return view('admin.equipments.edit',compact('equipment'));
     }
 
     /**
@@ -68,7 +71,7 @@ class EquipmentController extends Controller
     {
         $this->validate($request, [
             'eq_name' => 'required',
-            'eq_price' => 'required',
+            'eq_price' => 'required|digits_between:1,7',
             'eq_type' => 'required',
         ]);
     
@@ -76,9 +79,9 @@ class EquipmentController extends Controller
     
         $equipment = Equipment::find($id);
         $equipment->update($input);
-    
-        return redirect()->route('equipments.index')
-                        ->with('success','Equipment updated successfully');
+
+        Session::flash('flash_message', 'Equipment successfully updated!');
+        return redirect()->route('equipments.index');
     }
 
      /**
@@ -90,7 +93,7 @@ class EquipmentController extends Controller
     public function destroy($id)
     {
         Equipment::find($id)->delete();
-        return redirect()->route('equipments.index')
-                        ->with('success','Equipment deleted successfully');
+        Session::flash('flash_message', 'Equipment successfully deleted!');
+        return redirect()->route('equipments.index');
     }
 }

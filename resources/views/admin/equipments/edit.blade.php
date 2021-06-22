@@ -11,7 +11,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Add New Equipment</h1>
+        <h1 class="m-0">Update Equipment</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -41,20 +41,22 @@
           @endif
           <!-- /.card-header -->
           <!-- form start -->
-          <form action="{{route('equipments.store')}}" method="POST">
+          <form action="{{route('equipments.update', $equipment->id)}}" method="post">
             @csrf
+            @method('PATCH')
+            <input type="hidden" name="_method" value="PUT">
             <div class="card-body">
               <div class="form-group">
                 <label for="exampleInputEmail1">Equipment Name</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" name="eq_name" placeholder="Enter Equipment Name">
+                <input type="text" class="form-control" id="exampleInputEmail1" name="eq_name" placeholder="Enter Equipment Name" value="{{$equipment->eq_name}}">
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Equipment Price</label>
-                <input type="text" class="form-control" id="exampleInputPassword1" name="eq_price" placeholder="Enter Equipment Price">
+                <input type="text" class="form-control" id="exampleInputPassword1" name="eq_price" placeholder="Enter Equipment Price" value="{{$equipment->eq_price}}">
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Equipment Type</label>
-                <input type="text" class="form-control" id="exampleInputPassword1" name="eq_type" placeholder="Enter Equipment Type">
+                <input type="text" class="form-control" id="exampleInputPassword1" name="eq_type" placeholder="Enter Equipment Type" value="{{$equipment->eq_type}}">
               </div>
             </div>
             <!-- /.card-body -->

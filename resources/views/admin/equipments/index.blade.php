@@ -33,7 +33,13 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
+
             <div class="card-body">
+                @if(Session::has('flash_message'))
+                <div class="alert alert-success">
+                    {{ Session::get('flash_message') }}
+                </div>
+                @endif
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>

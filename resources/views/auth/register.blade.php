@@ -6,7 +6,7 @@ Author URL: http://w3layouts.com
 <html lang="zxx">
 
 <head>
-    <title>Working Signin form Responsive Widget Template :: W3layouts</title>
+    <title>X Entertainment - Register</title>
     <!-- Meta tag Keywords -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8" />
@@ -19,7 +19,6 @@ Author URL: http://w3layouts.com
 </head>
 
 <body style="background-color:#454444">
-
     <!-- form section start -->
     <section class="w3l-workinghny-form">
         <!-- /form -->

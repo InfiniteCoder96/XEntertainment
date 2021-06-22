@@ -22,4 +22,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // equipments routes
-Route::resource('equipments', EquipmentController::class);
+Route::resource('equipments', EquipmentController::class, ['only'=> ['index','create','store', 'update', 'edit', 'destroy']]);
