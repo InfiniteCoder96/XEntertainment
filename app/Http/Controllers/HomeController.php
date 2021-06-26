@@ -32,7 +32,10 @@ class HomeController extends Controller
                 return view('home');
                 break;
             default:
-                return view('welcome');
+                $events = app('App\Http\Controllers\EventController')->getAllEvents();
+                
+                dd($events);
+                return view('welcome',compact('eventJsonArr'));
                 break;
         }
         
@@ -40,5 +43,12 @@ class HomeController extends Controller
 
     public function show_dashboard() {
         
+    }
+
+    public function show_home() {
+        $eventJsonArr = app('App\Http\Controllers\EventController')->getAllEvents();
+                
+                //dd($events);
+        return view('welcome',compact('eventJsonArr'));
     }
 }

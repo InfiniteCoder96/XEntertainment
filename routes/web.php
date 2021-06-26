@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EquipmentController;
+use App\Http\Controllers\EventController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +14,7 @@ use App\Http\Controllers\EquipmentController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'show_home'])->name('show_home');
 
 Auth::routes();
 
@@ -23,3 +22,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // equipments routes
 Route::resource('equipments', EquipmentController::class, ['only'=> ['index','create','store', 'update', 'edit', 'destroy']]);
+Route::resource('events', EventController::class, ['only'=> ['index','create','store', 'update', 'edit', 'destroy']]);

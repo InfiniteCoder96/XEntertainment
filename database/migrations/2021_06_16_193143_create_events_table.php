@@ -18,7 +18,7 @@ class CreateEventsTable extends Migration
             $table->string('event_name');
             $table->string('event_venue');
             $table->string('event_date');
-            $table->bigInteger('qt_id');
+            $table->bigInteger('qt_id')->nullable();
         });
     }
 

@@ -67,7 +67,7 @@
                         @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="/home" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            Hi, {{ Auth::user()->name }}
+                                Hi, {{ Auth::user()->name }}
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -332,31 +332,27 @@
     <!-- contact section -->
     <!-- Footer section -->
 
-
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
+    <div class="modal" id="eventDetailsModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <h4>Date: <span id="event_date"></span></h4>
+                    <h4>Venue: <span id="event_venue"></span></h4>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
     </div>
+  </div>
+</div>
 
     <!-- Footer section -->
     <!-- JS FILES -->
     <script src="https://cdn.jsdelivr.net/combine/npm/fullcalendar@5.3.2,npm/fullcalendar@5.3.2/locales-all.min.js,npm/fullcalendar@5.3.2/locales-all.min.js,npm/fullcalendar@5.3.2/main.min.js"></script>
-    <script src="{{asset('shop/../../../ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')}}"></script>
+    <script src="{{asset('shop/js/jquery.min.js')}}"></script>
     <script src="{{asset('shop/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('shop/js/jquery.fancybox.pack.js')}}"></script>
     <script src="{{asset('shop/js/modernizr.js')}}"></script>
@@ -368,7 +364,31 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
+            var arr = <?php echo json_encode($eventJsonArr) ?>;
             var calendar = new FullCalendar.Calendar(calendarEl, {
+
+                eventSources: [
+
+                    // your event source
+                    {
+                        events: arr,
+                        color: 'gold', // an option!
+                        textColor: 'black' // an option!
+                    }
+
+                    // any other event sources...
+
+                ],
+                eventClick: function(info) {
+                    info.jsEvent.preventDefault(); // don't let the browser navigate
+
+                    if (info.event) {
+                        document.getElementById('exampleModalLabel').innerHTML = info.event.title;
+                        document.getElementById('event_date').innerHTML = info.event.start;
+                        document.getElementById('event_venue').innerHTML = info.event.extendedProps.venue;
+                        $('#eventDetailsModal').modal('show')
+                    }
+                },
                 initialView: 'dayGridMonth'
             });
             calendar.render();
