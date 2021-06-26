@@ -49,29 +49,29 @@
                         <li><a href="#Playlist">SERVICE</a></li>
                         <li><a href="#contact">CONTACT</a></li>
                         @guest
-                        @if (Route::has('login'))
-                        <li>
-                            <a href="{{ route('login') }}">
-                                Login
-                            </a>
-                        </li>
-                        @endif
+                            @if (Route::has('login'))
+                            <li>
+                                <a href="{{ route('login') }}">
+                                    Login
+                                </a>
+                            </li>
+                            @endif
 
-                        @if (Route::has('register'))
-                        <li>
-                            <a href="{{ route('register') }}">
-                                Login
-                            </a>
-                        </li>
-                        @endif
+                            @if (Route::has('register'))
+                            <li>
+                                <a href="{{ route('register') }}">
+                                    Register
+                                </a>
+                            </li>
+                            @endif
                         @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="/home" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <li>
+                            <a href="/home" role="button">
                                 Hi, {{ Auth::user()->name }}
                             </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
@@ -79,7 +79,6 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
-                            </div>
                         </li>
                         @endguest
 
@@ -333,9 +332,9 @@
     <!-- Footer section -->
 
     <div class="modal" id="eventDetailsModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-    <div class="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -345,9 +344,9 @@
                     <h4>Date: <span id="event_date"></span></h4>
                     <h4>Venue: <span id="event_venue"></span></h4>
                 </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
     <!-- Footer section -->
     <!-- JS FILES -->

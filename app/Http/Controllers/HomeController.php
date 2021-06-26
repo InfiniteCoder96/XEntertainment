@@ -6,15 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Show the application dashboard.
@@ -29,13 +20,10 @@ class HomeController extends Controller
                 return view('admin.dashboard');
                 break;
             case 'manager':
-                return view('home');
+                return $this->show_home();
                 break;
             default:
-                $events = app('App\Http\Controllers\EventController')->getAllEvents();
-                
-                dd($events);
-                return view('welcome',compact('eventJsonArr'));
+                return $this->show_home();
                 break;
         }
         
